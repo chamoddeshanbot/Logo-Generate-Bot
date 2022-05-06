@@ -120,11 +120,12 @@ async def start(client: Client, message: Message):
 
 🔥 Bot Commands 🔥
 
-/logo Ex:NetworksTech
-/logo2 Ex:NetworksTech
-/logohq Ex:NetworksTech 
-/write Ex:NetworksTech
-/wall Ex:Tress
+/slogo NetworkTech
+/slogohq NetworkTech
+/swrite NetworkTech
+/swall Trees
+/nlogo NetworkTech
+/nlogohq NetworkTech
 
 🌿 Developer : || @chamod_deshan ||
 
@@ -223,7 +224,7 @@ async def ib(Client, message):
     await message.reply(ibn)
     
     
-@app.on_message(filters.command("logo"))
+@app.on_message(filters.command("slogo"))
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -265,7 +266,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 #hq logo creator
-@app.on_message(filters.command("logohq"))
+@app.on_message(filters.command("slogohq"))
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -307,7 +308,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 #handwrite
-@app.on_message(filters.command("write"))
+@app.on_message(filters.command("swrite"))
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -354,7 +355,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 #wallpaper
-@app.on_message(filters.command("wall"))
+@app.on_message(filters.command("swall"))
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
