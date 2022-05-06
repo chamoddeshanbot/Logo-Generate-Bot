@@ -3,9 +3,9 @@ from config import Config
 
 app = Client(
   "bot",
-  api_id=API_ID,
-  api_hash=API_HASH,
-  bot_token=BOT_TOKEN
+  bot_token = Config.BOT_TOKEN,
+  api_id = Config.API_ID,
+  api_hash = Config.API_HASH
 )
 
 print("[INFO]: STARTING BOT...")
