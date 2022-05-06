@@ -1,5 +1,5 @@
 from pyrogram import Client
-from config import *
+from config import Config
 
 app = Client(
   "bot",
