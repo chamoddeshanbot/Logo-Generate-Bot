@@ -4,7 +4,7 @@ from logo import generate_logo
 from pyrogram.types import *
 import result
 from pyrogram import enums
-from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, Query
+from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied
 from pyrogram.types import (
     InlineKeyboardButton,
