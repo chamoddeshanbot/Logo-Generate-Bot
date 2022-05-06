@@ -1,9 +1,10 @@
 from pyrogram import Client, filters
 from config import Config
+from logo import generate_logo
 from pyrogram.types import *
 import result
 from pyrogram import enums
-from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied
 from pyrogram.types import (
     InlineKeyboardButton,
@@ -285,13 +286,13 @@ async def on_off_antiarab(_, message: Message):
     )
         return
     await message.reply_chat_action(enums.ChatAction.TYPING)
-    status = await message.reply("**⚙ Generating You 4k Logo ....**",
+    status = await message.reply("**⚙ Generating You Logohq ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]))
-    await status.edit("**⚙ Generating You 4k Logo ....**",
+    await status.edit("**⚙ Generating You Logohq ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("██████░░░░░░░", callback_data="progress_msg")]]))
-    await status.edit("**⚙ Generating You 4k Logo ....**",
+    await status.edit("**⚙ Generating You Logohq ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
     text = message.text.split(None, 1)[1]
@@ -405,7 +406,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 @app.on_message(filters.command("nlogo"))
-async def on_off_antiarab(_, message: Message):
+async def logo(bot, message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
@@ -414,7 +415,7 @@ async def on_off_antiarab(_, message: Message):
         text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
     )
         return
-    await message.reply_chat_action(enums.ChatAction.TYPING)
+    text = message.text.split(None, 1)[1]
     status = await message.reply("**⚙ Generating You Logo ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]))
@@ -423,9 +424,8 @@ async def on_off_antiarab(_, message: Message):
             [[InlineKeyboardButton("██████░░░░░░░", callback_data="progress_msg")]]))
     await status.edit("**⚙ Generating You Logo ....**",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
-    text = message.text.split(None, 1)[1]
-    photo = get(f"https://techzbotsapi.herokuapp.com/logo?text={text}").history[1].url
+            [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
+    photo = await generate_logo(text)
     await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
     await app.send_photo(message.chat.id, photo=photo, caption=caption.format(message.from_user.mention),
                  reply_markup=InlineKeyboardMarkup(
@@ -445,9 +445,11 @@ async def on_off_antiarab(_, message: Message):
     )
     await status.delete()
 
+
     
+
 @app.on_message(filters.command("nlogohq"))
-async def on_off_antiarab(_, message: Message):
+async def logohq(bot, message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
@@ -456,7 +458,7 @@ async def on_off_antiarab(_, message: Message):
         text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
     )
         return
-    await message.reply_chat_action(enums.ChatAction.TYPING)
+    text = message.text.split(None, 1)[1]
     status = await message.reply("**⚙ Generating You Logohq ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]))
@@ -465,11 +467,10 @@ async def on_off_antiarab(_, message: Message):
             [[InlineKeyboardButton("██████░░░░░░░", callback_data="progress_msg")]]))
     await status.edit("**⚙ Generating You Logohq ....**",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
-    text = message.text.split(None, 1)[1]
-    photo = get(f"https://techzbotsapi.herokuapp.com/logo?square=true&text={text}").history[1].url
+            [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
+    photo = await generate_logo(text,True)
     await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
-    await app.send_photo(message.chat.id, photo=photo, caption =caption4.format(message.from_user.mention),
+    await app.send_photo(message.chat.id, photo=photo, caption=caption4.format(message.from_user.mention),
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -486,6 +487,7 @@ async def on_off_antiarab(_, message: Message):
           )
     )
     await status.delete()
+    
 
 API = "https://apibu.herokuapp.com/api/y-images?query="
 
@@ -513,6 +515,7 @@ async def button(app, update):
       cb_data = update.data
       if "ib" in cb_data:
         await update.message.delete()
+        await query.answer(f"🛠 Send Inbox 🛠")
         await ib(app, update.message)
       elif "start" in cb_data:
         await update.message.delete()
