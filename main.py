@@ -1,4 +1,5 @@
 from pyrogram import Client, filters
+from bot import app
 from pyrogram.types import *
 import result
 from pyrogram import enums
@@ -8,7 +9,6 @@ from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup
 )
-from config import Config
 from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram import Client
@@ -16,13 +16,6 @@ from requests import get
 import os
 import requests
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-
-app = Client(
-    'logo Bot',
-    bot_token = Config.BOT_TOKEN,
-    api_id = Config.API_ID,
-    api_hash = Config.API_HASH
-)
 
 
 caption = """
@@ -66,7 +59,7 @@ caption3 = """
     """
 
 caption4 = """
-✍️ 4k Logo Generated Successfully✅
+✍️ Logohq Generated Successfully✅
 
 ◇───────────────◇
 
@@ -79,27 +72,29 @@ caption4 = """
 ◇───────────────◇️  
     """
 
+HELP = """
+
+**🖼 How To Use Me ?**
+
+**♻️ Example:** 
+
+/slogo NetworkTech
+/slogohq NetworkTech
+/swrite NetworkTech
+/swall Trees
+/nlogo NetworkTech
+/nlogohq NetworkTech
+"""
+
+
 FSUBB = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton("Network Tech 🇱🇰", url=f"https://t.me/NetworksTech") 
         ]]      
     )
 
-well = """ Hey there {}, and welcome to Group ! How are you? """
-
-left = """ Nice knowing you!, {} """
-
-@app.on_message(filters.command("dellall"))
-async def dellall(client,message):
-    await app.delete_messages(chat_id, list_of_message_ids)
-
-@app.on_message(filters.command("help"))
-async def dellall(client,message):
-    await app.forward_messages("https://t.me/c/1615594988/4279", "1901997764", [3, 20, 27])
-
-
 @app.on_message(filters.command("start"))
-async def start_(client: Client, message: Message):
+async def start(client: Client, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001110021950"), message.from_user.id)
@@ -166,6 +161,12 @@ async def start_(client: Client, message: Message):
         )
     )
 
+
+@app.on_message(filters.command("help"))
+async def help(bot, message):
+  await message.reply_photo("https://telegra.ph/file/12155d9fd310edf3fab33.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]))   
+
+
 @app.on_message(filters.command("about"))
 async def about_(client: Client, message: Message):
     try:
@@ -214,7 +215,7 @@ async def about_(client: Client, message: Message):
         )
     )
 
-ibn = """**🎨 Successfully Generated logo ✅\n🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
+ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
     
     
 @app.on_message(filters.command("ib"))
@@ -394,7 +395,88 @@ async def on_off_antiarab(_, message: Message):
     )
     await status.delete()
 
+@app.on_message(filters.command("nlogo"))
+async def on_off_antiarab(_, message: Message):
+    try:
+        await message.reply_chat_action(enums.ChatAction.TYPING)
+        await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
+    except UserNotParticipant:
+        await message.reply_text(
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
+    )
+        return
+    await message.reply_chat_action(enums.ChatAction.TYPING)
+    status = await message.reply("**⚙ Generating You Logo ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]))
+    await status.edit("**⚙ Generating You Logo ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("██████░░░░░░░", callback_data="progress_msg")]]))
+    await status.edit("**⚙ Generating You Logo ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
+    text = message.text.split(None, 1)[1]
+    photo = get(f"https://techzbotsapi.herokuapp.com/logo?text={text}").history[1].url
+    await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
+    await app.send_photo(message.chat.id, photo=photo, caption=caption.format(message.from_user.mention),
+                 reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "🌷 Open In Google 🌷", url=f"{photo}"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "🏖 Send Inbox 🏖", callback_data="ib"
+                    )
+                ]
+            ]
+          )
+    )
+    await status.delete()
 
+    
+@app.on_message(filters.command("nlogohq"))
+async def on_off_antiarab(_, message: Message):
+    try:
+        await message.reply_chat_action(enums.ChatAction.TYPING)
+        await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
+    except UserNotParticipant:
+        await message.reply_text(
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
+    )
+        return
+    await message.reply_chat_action(enums.ChatAction.TYPING)
+    status = await message.reply("**⚙ Generating You Logohq ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]))
+    await status.edit("**⚙ Generating You Logohq ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("██████░░░░░░░", callback_data="progress_msg")]]))
+    await status.edit("**⚙ Generating You Logohq ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
+    text = message.text.split(None, 1)[1]
+    photo = get(f"https://techzbotsapi.herokuapp.com/logo?square=true&text={text}").history[1].url
+    await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
+    await app.send_photo(message.chat.id, photo=photo, caption =caption4.format(message.from_user.mention),
+                 reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "🌷 Open In Google 🌷", url=f"{photo}"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "🏖 Send Inbox 🏖", callback_data="ib"
+                    )
+                ]
+            ]
+          )
+    )
+    await status.delete()
 
 API = "https://apibu.herokuapp.com/api/y-images?query="
 
@@ -410,12 +492,23 @@ button = InlineKeyboardMarkup(
     
     )
 
+
+@app.on_callback_query(filters.regex("help"))
+async def help(_,query):
+  await query.answer(f"🏖 Bot Help 🏖")
+  await query.message.edit(HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start")]]))
+
+
 @app.on_callback_query()
 async def button(app, update):
       cb_data = update.data
       if "ib" in cb_data:
         await update.message.delete()
         await ib(app, update.message)
+      elif "start" in cb_data:
+        await update.message.delete()
+        await query.answer(f"🏖 Start Menu 🏖")
+        await start(app, update.message)
 
 @app.on_inline_query()
 async def search(bot, update):
