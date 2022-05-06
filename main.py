@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from bot import app
+from config import Config
 from pyrogram.types import *
 import result
 from pyrogram import enums
@@ -85,6 +85,14 @@ HELP = """
 /nlogo NetworkTech
 /nlogohq NetworkTech
 """
+
+
+app = Client(
+    'logo Bot',
+    bot_token = Config.BOT_TOKEN,
+    api_id = Config.API_ID,
+    api_hash = Config.API_HASH
+)
 
 
 FSUBB = InlineKeyboardMarkup(
