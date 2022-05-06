@@ -4,7 +4,7 @@ from logo import generate_logo
 from pyrogram.types import *
 import result
 from pyrogram import enums
-from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery
+from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, Query
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied
 from pyrogram.types import (
     InlineKeyboardButton,
@@ -187,7 +187,7 @@ async def about_(client: Client, message: Message):
         text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
     )
         return
-    await message.reply_sticker(sticker = "DQACAgIAAxkDAAICu2ITEswmgapB0Se4csaQajDGqEsuAALlFAACCgKYSO2Ba4oM42CVIwQ")
+    await message.reply_sticker(sticker = "CAACAgUAAxkBAAIDTmIH_UzldE-IIKD0-N_n_hrcVhzRAAKaAwACKwAB-VTV1LdMsVUFGCME")
     await message.reply_photo(
         photo=f"https://telegra.ph/file/12155d9fd310edf3fab33.jpg",
         caption = """
@@ -230,6 +230,8 @@ ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to 
     
 @app.on_message(filters.command("ib"))
 async def ib(Client, message):
+    await message.copy(chat_id)
+    await message.forward(chat_id)
     await message.reply(ibn)
     
     
@@ -350,7 +352,7 @@ async def on_off_antiarab(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "🌷 Open In Google 🌷", url=f"{photo}"
+                        "🌷 Open In Google 🌷", url=f"{img}"
                     )
                 ],
                 [
@@ -506,7 +508,7 @@ button = InlineKeyboardMarkup(
 
 @app.on_callback_query(filters.regex("help"))
 async def help(_,query):
-  await query.answer(f"🏖 Bot Help 🏖")
+  await callback_query.answer(f"🏖 Bot Help 🏖")
   await query.message.edit(HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start")]]))
 
 
@@ -515,11 +517,11 @@ async def button(app, update):
       cb_data = update.data
       if "ib" in cb_data:
         await update.message.delete()
-        await query.answer(f"🛠 Send Inbox 🛠")
+        await callback_query.answer(f"🛠 Send Inbox 🛠")
         await ib(app, update.message)
       elif "start" in cb_data:
         await update.message.delete()
-        await query.answer(f"🏖 Start Menu 🏖")
+        await callback_query.answer(f"🏖 Start Menu 🏖")
         await start(app, update.message)
 
 @app.on_inline_query()
