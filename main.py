@@ -273,7 +273,7 @@ async def on_off_antiarab(_, message: Message):
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
     text = message.text.split(None, 1)[1]
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await message.reply_chat_action("upolad_photo")
+    await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.mention),
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -315,7 +315,7 @@ async def on_off_antiarab(_, message: Message):
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
     text = message.text.split(None, 1)[1]
     photo = get(f"https://single-developers.up.railway.app/logohq?name={text}").history[1].url
-    await message.reply_chat_action("upolad_photo")
+    await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption =caption4.format(message.from_user.mention),
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -362,7 +362,7 @@ async def on_off_antiarab(_, message: Message):
     }
     req = requests.post(API, headers={'Content-Type': 'application/json'}, json=body)
     img = req.history[1].url
-    await message.reply_chat_action("upolad_photo")
+    await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=img, caption =caption2.format(message.from_user.mention),
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -404,7 +404,7 @@ async def on_off_antiarab(_, message: Message):
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
     text = message.text.split(None, 1)[1]
     photo = get(f"https://single-developers.up.railway.app/wallpaper?search={text}").history[1].url
-    await message.reply_chat_action("upolad_photo")
+    await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption=caption3.format(message.from_user.mention),
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -445,7 +445,7 @@ async def logo(bot, message):
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
     photo = await generate_logo(text)
-    await message.reply_chat_action("upolad_photo")
+    await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption=caption.format(message.from_user.mention),
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -489,7 +489,7 @@ async def logohq(bot, message):
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
     photo = await generate_logo(text,True)
-    await message.reply_chat_action("upolad_photo")
+    await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption=caption4.format(message.from_user.mention),
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -531,17 +531,23 @@ async def help(_,query):
 
 
 @app.on_callback_query()
-async def button(app, update, query):
-      cb_data = update.data
+async def ib(app, query):
+      cb_data = query.data
       if "ib" in cb_data:
-        await update.message.delete()
+        await query.message.delete()
         await query.answer(f"🛠 Send Inbox 🛠")
-        await ib(app, update.message)
-      elif "start" in cb_data:
-        await update.message.delete()
-        await query.answer(f"🏖 Bot Menu 🏖")
-        await start(app, update.message)
+        await ib(app, query.message)
 
+  
+@app.on_callback_query()
+async def start(app, query):
+      cb_data = query.data
+      if "start" in cb_data:
+        await query.message.delete()
+        await query.answer(f"🛠 Send Inbox 🛠")
+        await start(app, query.message)
+        
+        
 @app.on_callback_query()
 async def button(app, update):
       cb_data = update.data
