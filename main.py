@@ -530,24 +530,18 @@ async def help(_,query):
   await query.message.edit(HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start")]]))
 
 
-@app.on_callback_query()
+@app.on_callback_query(filters.regex("ib"))
 async def ib(app, query):
-      cb_data = query.data
-      if "ib" in cb_data:
-        await query.message.delete()
-        await query.answer(f"🛠 Send Inbox 🛠")
-        await ib(app, query.message)
+  await query.answer(f"🛠 Send Inbox 🛠")
+  await query.message.edit(ibn)
+  await ib(app, query.message)
 
-  
-@app.on_callback_query()
+@app.on_callback_query(filters.regex("start"))
 async def start(app, query):
-      cb_data = query.data
-      if "start" in cb_data:
-        await query.message.delete()
-        await query.answer(f"🛠 Send Inbox 🛠")
-        await start(app, query.message)
-        
-        
+  await query.answer(f"🏖 Bot Menu 🏖")
+  await start(app, query.message)
+
+       
 @app.on_callback_query()
 async def button(app, update):
       cb_data = update.data
