@@ -339,9 +339,9 @@ async def on_off_antiarab(_, message: Message):
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action("typing")
-        await message.reply_text(
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
+        await message.reply_text(
         text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
     )
         return
