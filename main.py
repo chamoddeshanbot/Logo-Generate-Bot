@@ -524,15 +524,15 @@ async def help(_,query):
 
 
 @app.on_callback_query()
-async def button(app, update):
+async def button(app, update, query):
       cb_data = update.data
       if "ib" in cb_data:
         await update.message.delete()
-        await update.answer(f"🛠 Send Inbox 🛠")
+        await query.answer(f"🛠 Send Inbox 🛠")
         await ib(app, update.message)
       elif "start" in cb_data:
         await update.message.delete()
-        await update.answer(f"🏖 Bot Menu 🏖")
+        await query.answer(f"🏖 Bot Menu 🏖")
         await start(app, update.message)
 
 @app.on_callback_query()
