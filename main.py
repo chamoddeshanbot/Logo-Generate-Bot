@@ -79,12 +79,12 @@ HELP = """
 
 **♻️ Example:** 
 
+/logo NetworkTech
+/logohq NetworkTech
 /slogo NetworkTech
 /slogohq NetworkTech
-/swrite NetworkTech
-/swall Trees
-/nlogo NetworkTech
-/nlogohq NetworkTech
+/write NetworkTech
+/wall Trees
 """
 
 
@@ -129,12 +129,12 @@ async def start(client: Client, message: Message):
 
 🔥 Bot Commands 🔥
 
+/logo NetworkTech
+/logohq NetworkTech
 /slogo NetworkTech
 /slogohq NetworkTech
-/swrite NetworkTech
-/swall Trees
-/nlogo NetworkTech
-/nlogohq NetworkTech
+/write NetworkTech
+/wall Trees
 
 🌿 Developer : || @chamod_deshan ||
 
@@ -159,7 +159,7 @@ async def start(client: Client, message: Message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🌷 Help Developer 🌷", url=f"https://t.me/chamod_deshan"
+                        "🌷 Developer 🌷", url=f"https://t.me/chamod_deshan"
                     )
                 ],
                 [
@@ -174,7 +174,7 @@ async def start(client: Client, message: Message):
 
 @app.on_message(filters.command("help"))
 async def help(bot, message):
-  await message.reply_photo("https://telegra.ph/file/12155d9fd310edf3fab33.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]))   
+  await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]))   
 
 
 @app.on_message(filters.command("about"))
@@ -189,7 +189,7 @@ async def about_(client: Client, message: Message):
         return
     await message.reply_sticker(sticker = "CAACAgUAAxkBAAIDTmIH_UzldE-IIKD0-N_n_hrcVhzRAAKaAwACKwAB-VTV1LdMsVUFGCME")
     await message.reply_photo(
-        photo=f"https://telegra.ph/file/12155d9fd310edf3fab33.jpg",
+        photo=f"https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",
         caption = """
 
 🔥 [Network Tech 🇱🇰](https://t.me/NetworksTech) Corporation ©️
@@ -213,8 +213,14 @@ async def about_(client: Client, message: Message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🌷 Help Developer 🌷", url=f"https://t.me/chamod_deshan"
+                        "🌷 Developer 🌷", url=f"https://t.me/chamod_deshan"
                     )
+                ],
+                [
+                    InlineKeyboardButton(
+                        " help ", callback_data="help"
+                    )
+                    
                 ],
                 [
                     InlineKeyboardButton(text=
@@ -319,7 +325,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 #handwrite
-@app.on_message(filters.command("swrite"))
+@app.on_message(filters.command("write"))
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -366,7 +372,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 #wallpaper
-@app.on_message(filters.command("swall"))
+@app.on_message(filters.command("wall"))
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -407,7 +413,7 @@ async def on_off_antiarab(_, message: Message):
     )
     await status.delete()
 
-@app.on_message(filters.command("nlogo"))
+@app.on_message(filters.command("logo"))
 async def logo(bot, message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -450,7 +456,7 @@ async def logo(bot, message):
 
     
 
-@app.on_message(filters.command("nlogohq"))
+@app.on_message(filters.command("logohq"))
 async def logohq(bot, message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -508,7 +514,7 @@ button = InlineKeyboardMarkup(
 
 @app.on_callback_query(filters.regex("help"))
 async def help(_,query):
-  await callback_query.answer(f"🏖 Bot Help 🏖")
+  await query.answer(f"🏖 Bot Help 🏖")
   await query.message.edit(HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start")]]))
 
 
