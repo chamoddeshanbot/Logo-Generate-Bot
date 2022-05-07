@@ -241,11 +241,17 @@ ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to 
     
 @app.on_message(filters.command("ib"))
 async def ib(Client, message):
-    await message.copy(chat_id)
-    await message.forward(chat_id)
+    await app.copy_message(
+    chat_id=chat_id,
+    from_chat_id=message.chat.id,
+    message_id=message.id)
+    await app.forward_messages(
+    chat_id=chat_id,
+    from_chat_id=message.chat.id,
+    message_ids=message.id)
     await message.reply(ibn)
-    
-    
+
+        
 @app.on_message(filters.command("slogo"))
 async def on_off_antiarab(_, message: Message):
     try:
