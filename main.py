@@ -108,7 +108,7 @@ async def start(client: Client, message: Message):
         await message._client.get_chat_member(int("-1001110021950"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
-        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
     await message.reply_sticker(sticker = "CAACAgUAAxkBAAIDTmIH_UzldE-IIKD0-N_n_hrcVhzRAAKaAwACKwAB-VTV1LdMsVUFGCME")
@@ -178,7 +178,7 @@ async def start(client: Client, message: Message):
 
 @app.on_message(filters.command("help"))
 async def help(bot, message):
-  await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]))   
+  await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
 
 
 @app.on_message(filters.command("about"))
@@ -188,7 +188,7 @@ async def about_(client: Client, message: Message):
         await message._client.get_chat_member(int("-1001110021950"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
-        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
     await message.reply_sticker(sticker = "CAACAgUAAxkBAAIDTmIH_UzldE-IIKD0-N_n_hrcVhzRAAKaAwACKwAB-VTV1LdMsVUFGCME")
@@ -241,14 +241,12 @@ ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to 
 @app.on_message(filters.command("ib"))
 async def ib(Client, message):
     await app.copy_message(
-    chat_id=chat_id,
     from_chat_id=message.chat.id,
     message_id=message.id)
     await app.forward_messages(
-    chat_id=chat_id,
     from_chat_id=message.chat.id,
     message_ids=message.id)
-    await app.send_phto(message.chat.id, caption =ibn.format(message.from_user.mention))
+    await app.send_phto(message.chat.id, caption =ibn.format(message.from_user.mention), reply_to_message_id = message.message_id)
 
         
 @app.on_message(filters.command("slogo"))
@@ -258,7 +256,7 @@ async def on_off_antiarab(_, message: Message):
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
-        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
     await message.reply_chat_action("typing")
@@ -274,7 +272,7 @@ async def on_off_antiarab(_, message: Message):
     text = message.text.split(None, 1)[1]
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
-    await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.mention),
+    await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -300,7 +298,7 @@ async def on_off_antiarab(_, message: Message):
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
-        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
     await message.reply_chat_action("typing")
@@ -316,7 +314,7 @@ async def on_off_antiarab(_, message: Message):
     text = message.text.split(None, 1)[1]
     photo = get(f"https://single-developers.up.railway.app/logohq?name={text}").history[1].url
     await message.reply_chat_action("upload_photo")
-    await app.send_photo(message.chat.id, photo=photo, caption =caption4.format(message.from_user.mention),
+    await app.send_photo(message.chat.id, photo=photo, caption =caption4.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -342,7 +340,7 @@ async def on_off_antiarab(_, message: Message):
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
-        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
     await message.reply_chat_action("typing")
@@ -363,7 +361,7 @@ async def on_off_antiarab(_, message: Message):
     req = requests.post(API, headers={'Content-Type': 'application/json'}, json=body)
     img = req.history[1].url
     await message.reply_chat_action("upload_photo")
-    await app.send_photo(message.chat.id, photo=img, caption =caption2.format(message.from_user.mention),
+    await app.send_photo(message.chat.id, photo=img, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -389,7 +387,7 @@ async def on_off_antiarab(_, message: Message):
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
-        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
     await message.reply_chat_action("typing")
@@ -405,7 +403,7 @@ async def on_off_antiarab(_, message: Message):
     text = message.text.split(None, 1)[1]
     photo = get(f"https://single-developers.up.railway.app/wallpaper?search={text}").history[1].url
     await message.reply_chat_action("upload_photo")
-    await app.send_photo(message.chat.id, photo=photo, caption=caption3.format(message.from_user.mention),
+    await app.send_photo(message.chat.id, photo=photo, caption=caption3.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -430,7 +428,7 @@ async def logo(bot, message):
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
-        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
     text = message.text.split(None, 1)[1]
@@ -446,7 +444,7 @@ async def logo(bot, message):
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
     photo = await generate_logo(text)
     await message.reply_chat_action("upload_photo")
-    await app.send_photo(message.chat.id, photo=photo, caption=caption.format(message.from_user.mention),
+    await app.send_photo(message.chat.id, photo=photo, caption=caption.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -490,7 +488,7 @@ async def logohq(bot, message):
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
     photo = await generate_logo(text,True)
     await message.reply_chat_action("upload_photo")
-    await app.send_photo(message.chat.id, photo=photo, caption=caption4.format(message.from_user.mention),
+    await app.send_photo(message.chat.id, photo=photo, caption=caption4.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
                 [
