@@ -1,6 +1,8 @@
 from pyrogram import Client, filters
+import random
 from config import Config
 from logo import generate_logo
+from logo import get_wallpapers, get_unsplash
 from pyrogram.types import *
 import result
 from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery
@@ -380,7 +382,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 #wallpaper
-@app.on_message(filters.command("wall"))
+@app.on_message(filters.command("swall"))
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action("typing")
@@ -506,6 +508,91 @@ async def logohq(bot, message):
     )
     await status.delete()
     
+
+@app.on_message(filters.command("wall"))
+async def logo(bot, message):
+    try:
+        await message.reply_chat_action("typing")
+        await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
+    except UserNotParticipant:
+        await message.reply_text(
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
+    )
+        return
+    text = message.text.split(None, 1)[1]
+    await message.reply_chat_action("typing")
+    status = await message.reply("**⚙ Generating You Wallpaper ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
+    await status.edit("**⚙ Generating You Wallpaper ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("██████░░░░░░░", callback_data="progress_msg")]]))
+    await status.edit("**⚙ Generating You Wallpaper ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
+    img = await get_wallpapers(text)
+    photo = random.choice(wall)
+    await message.reply_chat_action("upload_photo")
+    await app.send_photo(message.chat.id, photo=photo, caption=caption.format(message.from_user.mention), reply_to_message_id = message.message_id,
+                 reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "🌷 Open In Google 🌷", url=f"{photo}"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "🏖 Send Inbox 🏖", callback_data="ib"
+                    )
+                ]
+            ]
+          )
+    )
+    await status.delete()
+    
+ 
+@app.on_message(filters.command("unsplash"))
+async def logo(bot, message):
+    try:
+        await message.reply_chat_action("typing")
+        await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
+    except UserNotParticipant:
+        await message.reply_text(
+        text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
+    )
+        return
+    text = message.text.split(None, 1)[1]
+    await message.reply_chat_action("typing")
+    status = await message.reply("**⚙ Generating You Wallpaper ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
+    await status.edit("**⚙ Generating You Wallpaper ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("██████░░░░░░░", callback_data="progress_msg")]]))
+    await status.edit("**⚙ Generating You Wallpaper ....**",
+        reply_markup=InlineKeyboardMarkup(
+            [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
+    img = await get_unsplash(text)
+    photo = random.choice(wall)
+    await message.reply_chat_action("upload_photo")
+    await app.send_photo(message.chat.id, photo=photo, caption=caption.format(message.from_user.mention), reply_to_message_id = message.message_id,
+                 reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "🌷 Open In Google 🌷", url=f"{photo}"
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        "🏖 Send Inbox 🏖", callback_data="ib"
+                    )
+                ]
+            ]
+          )
+    )
+    await status.delete()
 
 API = "https://apibu.herokuapp.com/api/y-images?query="
 
