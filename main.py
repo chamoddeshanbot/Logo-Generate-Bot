@@ -531,7 +531,7 @@ async def logo(bot, message):
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
     img = await get_wallpapers(text)
-    photo = random.choice(wall)
+    photo = random.choice(img)
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption=caption.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
@@ -574,7 +574,7 @@ async def logo(bot, message):
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
     img = await get_unsplash(text)
-    photo = random.choice(wall)
+    photo = random.choice(img)
     await message.reply_chat_action("upload_photo")
     await app.send_photo(message.chat.id, photo=photo, caption=caption.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
