@@ -253,8 +253,7 @@ async def inbox(app, message):
        if FORWARD_AS_COPY is True:
            await app.forward_messages(
                chat_id=chat_id,
-               from_chat_id=message.chat.id,
-               message_ids=message.id)
+               from_chat_id=chat_id)
     except Exception as err:
         await message.reply(text=f"#ERROR: {err}") 
 
@@ -262,6 +261,7 @@ async def inbox(app, message):
 async def ib(app, message):
     try:
        if FORWARD_AS_COPY is True:
+           user_id = user.id
            await message.copy(chat_id=user_id)
     except Exception as err:
         await message.reply(text=f"#ERROR: {err}")
