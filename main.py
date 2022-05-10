@@ -246,16 +246,12 @@ ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to 
  
 FORWARD_AS_COPY = True
 grou_id = -1001755717228
-message_id = 1901997764
 
 @app.on_message(filters.command("ib"))
 async def ib(app, message):
     try:
        if FORWARD_AS_COPY is True:
-           await message.copy(chat_id=message.chat.id)
-       else:
-           await message.forward(message_id=message_id)
-           await message.reply(ibn, reply_to_message_id = message.message_id)
+           await message.forward(chat_id=message.from_user.id)
     except Exception as err:
         await message.reply(chat_id=grou_id, text=f"#ERROR: {err}")
 
