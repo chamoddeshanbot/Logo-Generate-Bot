@@ -1,5 +1,6 @@
 from pyrogram import Client, filters
 import random
+from typing import Union
 from config import Config
 from logo import generate_logo
 from logo import get_wallpapers, get_unsplash
