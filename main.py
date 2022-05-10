@@ -628,7 +628,7 @@ async def button(app, update):
       cb_data = update.data
       if "ib" in cb_data:
         await ib(app, update.message)
-        await update.message.delete()
+        await update.message.edit(ibn)
       elif "start" in cb_data:
         await update.message.delete()
         await start(app, update.message)
