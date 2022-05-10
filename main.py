@@ -611,7 +611,7 @@ async def help(_,query):
 @app.on_callback_query(filters.regex("ib"))
 async def ib(_,query):
     await query.answer(f"🏖 Send Inbox 🏖")
-    await query.message.copy(chat_id=cmd.from_user.id)
+    await query.message.copy(chat_id=message.from_user.id)
     await query.message.reply(ibn)
 
 @app.on_callback_query()
