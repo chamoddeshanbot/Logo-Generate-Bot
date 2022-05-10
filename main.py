@@ -612,14 +612,13 @@ async def help(_,query):
 async def ib(_,query):
   await query.answer(f"🏖 Send Inbox 🏖")
   try:
-    msg = await query.message.edit_reply_markup(reply_markup=None)
     user_id = message.from_user.id
-    await query.message.copy(chat_id=user_id)
+    msg = await query.message.copy(chat_id=user_id)
   except FloodWait:
     pass
   except Exception as e:
     try:
-      return await x.edit(f"`erorr n\n`{str(e)}`")
+      return await message.reply(text=f"`erorr n\n`{str(e)}`")
     except:
       return
 
