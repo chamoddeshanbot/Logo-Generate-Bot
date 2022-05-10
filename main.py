@@ -243,18 +243,7 @@ async def about_(client: Client, message: Message):
     )
 
 ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
- 
-FORWARD_AS_COPY = True
-
-@app.on_message(filters.command("ib"))
-async def ib(app, message):
-    try:
-       if FORWARD_AS_COPY is True:
-           user_id = message.from_user.mention
-           await message.copy(chat_id=user_id)
-    except Exception as err:
-        await message.reply(text=f"#ERROR: {err}")
-        
+     
 
 @app.on_message(filters.command("slogo"))
 async def on_off_antiarab(_, message: Message):
@@ -619,12 +608,17 @@ async def help(_,query):
   await query.answer(f"🏖 Bot Help 🏖")
   await query.message.edit(HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start")]]))
 
-       
+@app.on_callback_query(filters.regex("ib"))
+async def ib(_,query):
+  await query.answer(f"🏖 Send Inbox 🏖")
+  await query.copy(chat_id=message.from_user.id)
+  await query.message.edit(ibn)
+
 @app.on_callback_query()
 async def button(app, update):
       cb_data = update.data
-      if "ib" in cb_data:
-        await ib(app, update.message)
+      if "ibv" in cb_data:
+        await message.copy(chat_id=message.from_user.id)
         await update.message.edit(ibn)
       elif "start" in cb_data:
         await update.message.delete()
