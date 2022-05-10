@@ -7,7 +7,7 @@ from logo import get_wallpapers, get_unsplash
 from pyrogram.types import *
 import result
 from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, Chat
-from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied
+from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied, FloodWait
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup
