@@ -608,8 +608,8 @@ async def help(_,query):
   await query.answer(f"🏖 Bot Help 🏖")
   await query.message.edit(HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start")]]))
 
-@app.on_callback_query(filters.regex("ib"))
-async def ib(_,query):
+@app.on_callback_query(filters.regex("ibv"))
+async def ibv(_,query):
     message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
     await query.message.edit_reply_markup(reply_markup=None)
@@ -618,13 +618,13 @@ async def ib(_,query):
     await query.message.reply(ibn)
 
     
-@app.on_callback_query(filters.regex("inbox"))
-async def inbox(_,query):
+@app.on_callback_query(filters.regex("ib"))
+async def ib(_,query):
     message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
-    await query.message.forward(chat_id=message.from_user.id,
-    from_chat_id=massge.chat.id,
-    message_ids=message.id)
+    await query.message.forward(chat_id=query.from_user.id,
+    from_chat_id=query.chat.id,
+    message_ids=query.id)
     await query.message.reply(ibn)
     
 @app.on_callback_query()
