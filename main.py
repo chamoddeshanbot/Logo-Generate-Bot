@@ -243,12 +243,15 @@ async def about_(client: Client, message: Message):
     )
 
 ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
-    
+
+file_id= msg.id
+message_id= msg.message_id
+caption = msg.caption
     
 @app.on_message(filters.command("ib"))
 async def ib(message: Message, chat_id: int) -> Union[MessageId, Message]:
-    await app.copy_message(chat_id=chat_id, message_id=message_id)
-    await app.forward_messages(chat_id=chat_id, message_id=message_id)
+    await app.copy_message(chat_id=chat_id, message_id=message_id, file_id=file_id, caption=caption)
+    await app.forward_messages(chat_id=chat_id, message_id=message_id, file_id=file_id, caption=caption)
     await app.send_phto(message.chat.id, caption =ibn.format(message.from_user.mention), reply_to_message_id = message.message_id)
 
         
