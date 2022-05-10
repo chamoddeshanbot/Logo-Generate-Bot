@@ -245,25 +245,21 @@ async def about_(client: Client, message: Message):
 ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
  
 FORWARD_AS_COPY = True
-grou_id = -1001755717228
 chat_id = 1901997764
 
 @app.on_message(filters.command("inbox"))
 async def inbox(app, message):
     try:
        if FORWARD_AS_COPY is True:
-           await app.forward_messages(
-               chat_id=message.chat.id,
-               from_chat_id=message.chat.id,
-               message_ids=message.id)
+           await app.forward_messages(chat_id=chat_id)
     except Exception as err:
-        await message.reply("#ERROR: {err}") 
+        await message.reply(text=f"#ERROR: {err}") 
 
 @app.on_message(filters.command("ib"))
 async def ib(app, message):
     try:
        if FORWARD_AS_COPY is True:
-           await message.copy(chat_id=chat_id)
+           await message.copy(chat_id=message.from_user.id)
     except Exception as err:
         await message.reply("#ERROR: {err}")
         
