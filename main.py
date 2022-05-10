@@ -611,8 +611,16 @@ async def help(_,query):
 @app.on_callback_query(filters.regex("ib"))
 async def ib(_,query):
   await query.answer(f"🏖 Send Inbox 🏖")
-  await query.copy(chat_id=message.from_user.id)
-  await query.message.edit(ibn)
+  try:
+    msg = await query.message.edit_reply_markup(reply_markup=None)
+    await msg.copy(chat_id=message.from_user.id)
+  except FloodWait:
+    pass
+  except Exception as e:
+    try:
+      return await x.edit(f"`erorr n\n`{str(e)}`")
+    except:
+      return
 
 @app.on_callback_query()
 async def button(app, update):
