@@ -245,7 +245,7 @@ ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to 
     
     
 @app.on_message(filters.command("ib"))
-async def ib(Client, message):
+async def ib(message: Message, chat_id: int) -> Union[MessageId, Message]:
     await app.copy_message(
     chat_id=chat_id,
     from_chat_id=message.chat.id,
