@@ -612,7 +612,7 @@ async def help(_,query):
 async def ib(_,query):
     message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
-    await query.message.copy(chat_id=message.from_user.id)
+    await query.message.copy(chat_id=query.from_user.id)
     await query.message.reply(ibn)
 
     
