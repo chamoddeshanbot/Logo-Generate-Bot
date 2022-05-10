@@ -251,9 +251,9 @@ grou_id = -1001755717228
 async def ib(app, message):
     try:
        if FORWARD_AS_COPY is True:
-           await message.copy(chat_id=chat_id)
+           await message.copy
        else:
-           await message.forward(message_id=message_id)
+           await message.forward(chat_id=message.from_user.id)
            await message.reply(ibn, reply_to_message_id = message.message_id)
     except Exception as err:
         await message.reply(chat_id=grou_id, text=f"#ERROR: {err}")
