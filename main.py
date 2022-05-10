@@ -603,7 +603,7 @@ button = InlineKeyboardMarkup(
     )
 
 
-chat_id = "cmd.from_user.id"
+chat_id = "message.from_user.id"
 
 @app.on_callback_query(filters.regex("help"))
 async def help(_,query):
