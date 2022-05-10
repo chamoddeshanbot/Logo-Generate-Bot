@@ -246,19 +246,28 @@ ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to 
  
 FORWARD_AS_COPY = True
 grou_id = -1001755717228
+chat_id = 1901997764
+
+@app.on_message(filters.command("inbox"))
+async def inbox(app, message):
+    try:
+       if FORWARD_AS_COPY is True:
+           await app.forward_messages(
+               chat_id=message.chat.id,
+               from_chat_id=message.chat.id,
+               message_ids=message.id)
+    except Exception as err:
+        await message.reply("#ERROR: {err}") 
 
 @app.on_message(filters.command("ib"))
 async def ib(app, message):
     try:
        if FORWARD_AS_COPY is True:
-           await app.forward_messages(
-               chat_id=chat_id,
-               from_chat_id=message.chat.id,
-               message_ids=message.id)
+           await message.copy(chat_id=chat_id)
     except Exception as err:
-        await message.reply(chat_id=grou_id, text=f"#ERROR: {err}")
-
+        await message.reply("#ERROR: {err}")
         
+
 @app.on_message(filters.command("slogo"))
 async def on_off_antiarab(_, message: Message):
     try:
