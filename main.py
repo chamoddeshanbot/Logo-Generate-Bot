@@ -613,7 +613,8 @@ async def ib(_,query):
   await query.answer(f"🏖 Send Inbox 🏖")
   try:
     msg = await query.message.edit_reply_markup(reply_markup=None)
-    await msg.copy(chat_id=message.from_user.id)
+    user_id = message.from_user.id
+    await query.message.copy(chat_id=user_id)
   except FloodWait:
     pass
   except Exception as e:
