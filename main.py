@@ -243,7 +243,9 @@ async def about_(client: Client, message: Message):
     )
 
 ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
-   
+ 
+FORWARD_AS_COPY = True
+
 @app.on_message(filters.command("ib"))
 async def ib(app, message):
     try:
@@ -253,7 +255,7 @@ async def ib(app, message):
            await message.forward(chat_id)
            await message.reply(ibn, reply_to_message_id = message.message_id)
     except Exception as err:
-        await app.send_message(chat_id="me", text=f"#ERROR: {err}")
+        await message.reply(chat_id="me", text=f"#ERROR: {err}")
 
         
 @app.on_message(filters.command("slogo"))
