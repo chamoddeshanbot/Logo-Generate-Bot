@@ -623,8 +623,8 @@ async def ib(_,query):
     message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
     await query.message.forward(chat_id=query.from_user.id,
-    from_chat_id=query.chat.id,
-    message_ids=query.id)
+    from_chat_id=message.chat.id,
+    message_ids=message.id)
     await query.message.reply(ibn)
     
 @app.on_callback_query()
