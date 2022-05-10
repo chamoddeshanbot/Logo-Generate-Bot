@@ -603,6 +603,8 @@ button = InlineKeyboardMarkup(
     )
 
 
+chat_id = 1901997764
+
 @app.on_callback_query(filters.regex("help"))
 async def help(_,query):
   await query.answer(f"🏖 Bot Help 🏖")
@@ -612,7 +614,8 @@ async def help(_,query):
 async def ib(_,query):
   await query.answer(f"🏖 Send Inbox 🏖")
   try:
-    msg = await query.message.copy(chat_id=message.from_user.id)
+    await message.copy(chat_id=chat_id)
+    await query.message.reply(ibn)
   except FloodWait:
     pass
   except Exception as e:
