@@ -610,10 +610,21 @@ async def help(_,query):
 
 @app.on_callback_query(filters.regex("ib"))
 async def ib(_,query):
+    message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
     await query.message.copy(chat_id=message.from_user.id)
     await query.message.reply(ibn)
 
+    
+@app.on_callback_query(filters.regex("inbox"))
+async def inbox(_,query):
+    message = query.message
+    await query.answer(f"🏖 Send Inbox 🏖")
+    await query.message.forward(chat_id=message.from_user.id,
+    from_chat_id=massge.chat.id,
+    message_ids=message.id)
+    await query.message.reply(ibn)
+    
 @app.on_callback_query()
 async def button(app, update):
       cb_data = update.data
