@@ -245,7 +245,7 @@ async def about_(client: Client, message: Message):
 ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
  
 FORWARD_AS_COPY = True
-grou_id = -1001755717228
+chat_id = -1001755717228
 
 @app.on_message(filters.command("ib"))
 async def ib(app, message):
@@ -253,10 +253,10 @@ async def ib(app, message):
        if FORWARD_AS_COPY is True:
            await message.copy
        else:
-           await message.forward(chat_id=message.from_user.id)
+           await message.forward(message_id=message.from_user.id)
            await message.reply(ibn, reply_to_message_id = message.message_id)
     except Exception as err:
-        await message.reply(grou_id, text=f"#ERROR: {err}")
+        await message.reply(chat_id, text=f"#ERROR: {err}")
 
         
 @app.on_message(filters.command("slogo"))
@@ -628,7 +628,7 @@ async def button(app, update):
       cb_data = update.data
       if "ib" in cb_data:
         await ib(app, update.message)
-        await update.message.edit(ibn)
+        await update.message.edit(ibn, reply_to_message_id = message.message_id)
       elif "start" in cb_data:
         await update.message.delete()
         await start(app, update.message)
