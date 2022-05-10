@@ -256,7 +256,7 @@ async def ib(app, message):
            await message.forward(message_id=message.from_user.id)
            await message.reply(ibn, reply_to_message_id = message.message_id)
     except Exception as err:
-        await message.reply(chat_id, text=f"#ERROR: {err}")
+        await message.reply(chat_id=chat_id, text=f"#ERROR: {err}")
 
         
 @app.on_message(filters.command("slogo"))
