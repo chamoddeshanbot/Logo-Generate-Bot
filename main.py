@@ -6,7 +6,7 @@ from logo import generate_logo
 from logo import get_wallpapers, get_unsplash
 from pyrogram.types import *
 import result
-from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery
+from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, Chat
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied
 from pyrogram.types import (
     InlineKeyboardButton,
@@ -253,7 +253,8 @@ async def inbox(app, message):
        if FORWARD_AS_COPY is True:
            await app.forward_messages(
                chat_id=chat_id,
-               from_chat_id=chat_id)
+               from_chat_id=chat_id
+               message_ids=message.id)
     except Exception as err:
         await message.reply(text=f"#ERROR: {err}") 
 
@@ -261,7 +262,7 @@ async def inbox(app, message):
 async def ib(app, message):
     try:
        if FORWARD_AS_COPY is True:
-           user_id = user.id
+           user_id = member.id
            await message.copy(chat_id=user_id)
     except Exception as err:
         await message.reply(text=f"#ERROR: {err}")
