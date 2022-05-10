@@ -12,6 +12,10 @@ from pyrogram.types import (
     InlineKeyboardMarkup
 )
 from pyrogram import filters
+from telegram import Message, MessageId
+from telegram.ext import CallbackContext, Filters, MessageHandler
+from telegram.error import ChatMigrated
+from telegram.update import Update
 from pyrogram.types import Message
 from pyrogram import Client
 from requests import get
@@ -243,9 +247,11 @@ ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to 
 @app.on_message(filters.command("ib"))
 async def ib(Client, message):
     await app.copy_message(
+    chat_id=chat_id,
     from_chat_id=message.chat.id,
     message_id=message.id)
     await app.forward_messages(
+    chat_id=chat_id,
     from_chat_id=message.chat.id,
     message_ids=message.id)
     await app.send_phto(message.chat.id, caption =ibn.format(message.from_user.mention), reply_to_message_id = message.message_id)
