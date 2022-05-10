@@ -245,8 +245,7 @@ async def about_(client: Client, message: Message):
 ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
  
 FORWARD_AS_COPY = True
-chat_id = -1001266148369
-message_id = -769294557
+
 
 @app.on_message(filters.command("ib"))
 async def ib(app, message):
