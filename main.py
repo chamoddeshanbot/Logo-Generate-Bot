@@ -131,6 +131,8 @@ app = Client(
 )
 
 
+IB = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
+
 FSUBB = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton("Network Tech 🇱🇰", url=f"https://t.me/NetworksTech") 
@@ -226,7 +228,7 @@ async def help(bot, message):
 
 @app.on_message(filters.command("ib"))
 async def ib(bot, message):
-  await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=ibn,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
+  await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=IB,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
 
 
 @app.on_message(filters.command("about") & filters.group=True)
@@ -283,7 +285,7 @@ async def about_(client: Client, message: Message):
         )
     )
 
-ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
+IB = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
      
 
 @app.on_message(filters.command("slogo") & filters.group=True)
@@ -647,7 +649,7 @@ async def ib(_,query):
     message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
     await query.message.copy(chat_id=query.from_user.id)
-    await query.message.edit(ibn,
+    await query.message.edit(IB,
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("✖️ close ✖️", callback_data="close")]]))
 
