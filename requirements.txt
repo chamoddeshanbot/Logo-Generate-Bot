@@ -1,6 +1,6 @@
-pyrogram==1.4.12
+pyrogram
 tgcrypto
 requests
 result
 aiohttp
-python-telegram-bot==13.7
+python-telegram-bot
