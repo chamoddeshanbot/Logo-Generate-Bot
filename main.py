@@ -148,7 +148,7 @@ async def start(bot, message):
 @app.on_message(filters.command("start") & filters.group)
 async def start(client: Client, message: Message):
     try:
-        await message.reply_chat_action(enums.ChatAction.TYPING)
+        await message.reply_chat_action("typing")
         await message._client.get_chat_member(int("-1001110021950"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
@@ -574,7 +574,7 @@ async def logo(bot, message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🏖 Send Inbox 🏖", callback_data="ib"
+                        "🏖 Send Inbox 🏖", callback_data="help"
                     )
                 ]
             ]
@@ -639,19 +639,20 @@ button = InlineKeyboardMarkup(
     )
 
 
-@app.on_callback_query(filters.regex("help"))
-async def help(_,query):
+@app.on_callback_query(filters.regex("hel"))
+async def hel(_,query):
   await query.answer(f"🏖 Bot Help 🏖")
   await query.message.edit(HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start")]]))
 
-@app.on_callback_query(filters.regex("ib"))
-async def ib(_,query):
+@app.on_callback_query(filters.regex("help"))
+async def help(_,query):
     message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
-    await query.message.copy(chat_id=query.from_user.id)
     await query.message.edit(IB,
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("✖️ close ✖️", callback_data="close")]]))
+    await query.message.copy(chat_id=query.from_user.id)
+    
 
     
 @app.on_callback_query(filters.regex("close"))
