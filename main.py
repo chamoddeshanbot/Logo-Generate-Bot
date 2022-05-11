@@ -132,12 +132,20 @@ app = Client(
 
 
 IB = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
-
+ 
+ 
 FSUBB = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton("Network Tech 🇱🇰", url=f"https://t.me/NetworksTech") 
+        InlineKeyboardButton(text="Network Tech 🇱🇰", url=f"https://t.me/NetworksTech") 
         ]]      
     )
+
+INB = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton("✖️ close ✖️", callback_data="close") 
+        ]]      
+    )
+
 
 @app.on_message(filters.command("start") & filters.private)
 async def start(bot, message):
@@ -639,19 +647,20 @@ button = InlineKeyboardMarkup(
     )
 
 
-@app.on_callback_query(filters.regex("hel"))
-async def hel(_,query):
+@app.on_callback_query(filters.regex("help"))
+async def help(_,query):
   await query.answer(f"🏖 Bot Help 🏖")
   await query.message.edit(HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start")]]))
 
-@app.on_callback_query(filters.regex("help"))
-async def help(_,query):
+@app.on_callback_query(filters.regex("ib"))
+async def ib(_,query):
     message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
-    await query.message.edit(IB,
+    await query.message.copy(chat_id=query.from_user.id)
+    await query.message.delete()
+    await query.message.send_message(caption=f"**🎨 Successfully Generated logo ✅**\n\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**\n\n🍀 User Id : {query.from_user.id}",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("✖️ close ✖️", callback_data="close")]]))
-    await query.message.copy(chat_id=query.from_user.id)
     
 
     
@@ -662,8 +671,8 @@ async def close(_,query):
     await query.message.reply_chat_action("cancel")
     await query.message.delete()
     
-@app.on_callback_query(filters.regex("inb"))
-async def ibb(_,query):
+@app.on_callback_query(filters.regex("ilb"))
+async def ilb(_,query):
     message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
     await query.message.forward(chat_id=query.from_user.id,
