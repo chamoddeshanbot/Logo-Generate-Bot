@@ -1,4 +1,5 @@
 from pyrogram import Client, filters
+from pyrogram import enums
 import random
 from typing import Union
 from config import Config
@@ -111,7 +112,7 @@ FSUBB = InlineKeyboardMarkup(
 @app.on_message(filters.command("start"))
 async def start(client: Client, message: Message):
     try:
-        await message.reply_chat_action("typing")
+        await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001110021950"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
@@ -191,7 +192,7 @@ async def help(bot, message):
 @app.on_message(filters.command("about"))
 async def about_(client: Client, message: Message):
     try:
-        await message.reply_chat_action("typing")
+        await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001110021950"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
@@ -248,14 +249,14 @@ ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to 
 @app.on_message(filters.command("slogo"))
 async def on_off_antiarab(_, message: Message):
     try:
-        await message.reply_chat_action("typing")
+        await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
         text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
-    await message.reply_chat_action("typing")
+    await message.reply_chat_action(enums.ChatAction.TYPING)
     status = await message.reply("**⚙ Generating You Logo ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
@@ -267,7 +268,7 @@ async def on_off_antiarab(_, message: Message):
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
     text = message.text.split(None, 1)[1]
     photo = get(f"https://single-developers.up.railway.app/logo?name={text}").history[1].url
-    await message.reply_chat_action("upload_photo")
+    await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
     await app.send_photo(message.chat.id, photo=photo, caption =caption.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -290,14 +291,14 @@ async def on_off_antiarab(_, message: Message):
 @app.on_message(filters.command("slogohq"))
 async def on_off_antiarab(_, message: Message):
     try:
-        await message.reply_chat_action("typing")
+        await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
         text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
-    await message.reply_chat_action("typing")
+    await message.reply_chat_action(enums.ChatAction.TYPING)
     status = await message.reply("**⚙ Generating You Logohq ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
@@ -309,7 +310,7 @@ async def on_off_antiarab(_, message: Message):
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
     text = message.text.split(None, 1)[1]
     photo = get(f"https://single-developers.up.railway.app/logohq?name={text}").history[1].url
-    await message.reply_chat_action("upload_photo")
+    await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
     await app.send_photo(message.chat.id, photo=photo, caption =caption4.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -332,14 +333,14 @@ async def on_off_antiarab(_, message: Message):
 @app.on_message(filters.command("write"))
 async def on_off_antiarab(_, message: Message):
     try:
-        await message.reply_chat_action("typing")
+        await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
         text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
-    await message.reply_chat_action("typing")
+    await message.reply_chat_action(enums.ChatAction.TYPING)
     status = await message.reply("**⚙ Writing You Picture ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
@@ -356,7 +357,7 @@ async def on_off_antiarab(_, message: Message):
     }
     req = requests.post(API, headers={'Content-Type': 'application/json'}, json=body)
     img = req.history[1].url
-    await message.reply_chat_action("upload_photo")
+    await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
     await app.send_photo(message.chat.id, photo=img, caption =caption2.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -379,14 +380,14 @@ async def on_off_antiarab(_, message: Message):
 @app.on_message(filters.command("swall"))
 async def on_off_antiarab(_, message: Message):
     try:
-        await message.reply_chat_action("typing")
+        await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
         text=f"**⛔️ Access Denied ⛔️**\n\n🙋‍♂️ **Hey There** {message.from_user.mention}, You Must **Join** @NetworksTech  Telegram **Channel** To Use This BOT. So, **Please Join** it & Try Again🤗. **Thank** You 🤝", disable_web_page_preview=True, reply_markup=FSUBB, reply_to_message_id = message.message_id
     )
         return
-    await message.reply_chat_action("typing")
+    await message.reply_chat_action(enums.ChatAction.TYPING)
     status = await message.reply("**⚙ Generating You Wallpaper ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
@@ -398,7 +399,7 @@ async def on_off_antiarab(_, message: Message):
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))
     text = message.text.split(None, 1)[1]
     photo = get(f"https://single-developers.up.railway.app/wallpaper?search={text}").history[1].url
-    await message.reply_chat_action("upload_photo")
+    await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
     await app.send_photo(message.chat.id, photo=photo, caption=caption3.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -420,7 +421,7 @@ async def on_off_antiarab(_, message: Message):
 @app.on_message(filters.command("logo"))
 async def logo(bot, message):
     try:
-        await message.reply_chat_action("typing")
+        await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
@@ -428,7 +429,7 @@ async def logo(bot, message):
     )
         return
     text = message.text.split(None, 1)[1]
-    await message.reply_chat_action("typing")
+    await message.reply_chat_action(enums.ChatAction.TYPING)
     status = await message.reply("**⚙ Generating You Logo ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
@@ -439,7 +440,7 @@ async def logo(bot, message):
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
     photo = await generate_logo(text)
-    await message.reply_chat_action("upload_photo")
+    await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
     await app.send_photo(message.chat.id, photo=photo, caption=caption.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -464,7 +465,7 @@ async def logo(bot, message):
 @app.on_message(filters.command("logohq"))
 async def logohq(bot, message):
     try:
-        await message.reply_chat_action("typing")
+        await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
@@ -472,7 +473,7 @@ async def logohq(bot, message):
     )
         return
     text = message.text.split(None, 1)[1]
-    await message.reply_chat_action("typing")
+    await message.reply_chat_action(enums.ChatAction.TYPING)
     status = await message.reply("**⚙ Generating You Logohq ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
@@ -483,7 +484,7 @@ async def logohq(bot, message):
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
     photo = await generate_logo(text,True)
-    await message.reply_chat_action("upload_photo")
+    await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
     await app.send_photo(message.chat.id, photo=photo, caption=caption4.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -506,7 +507,7 @@ async def logohq(bot, message):
 @app.on_message(filters.command("wall"))
 async def logo(bot, message):
     try:
-        await message.reply_chat_action("typing")
+        await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
@@ -514,7 +515,7 @@ async def logo(bot, message):
     )
         return
     text = message.text.split(None, 1)[1]
-    await message.reply_chat_action("typing")
+    await message.reply_chat_action(enums.ChatAction.TYPING)
     status = await message.reply("**⚙ Generating You Wallpaper ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
@@ -526,7 +527,7 @@ async def logo(bot, message):
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
     img = await get_wallpapers(text)
     photo = random.choice(img)
-    await message.reply_chat_action("upload_photo")
+    await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
     await app.send_photo(message.chat.id, photo=photo, caption=caption3.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
@@ -549,7 +550,7 @@ async def logo(bot, message):
 @app.on_message(filters.command("unsplash"))
 async def logo(bot, message):
     try:
-        await message.reply_chat_action("typing")
+        await message.reply_chat_action(enums.ChatAction.TYPING)
         await message._client.get_chat_member(int("-1001638745764"), message.from_user.id)
     except UserNotParticipant:
         await message.reply_text(
@@ -557,7 +558,7 @@ async def logo(bot, message):
     )
         return
     text = message.text.split(None, 1)[1]
-    await message.reply_chat_action("typing")
+    await message.reply_chat_action(enums.ChatAction.TYPING)
     status = await message.reply("**⚙ Generating You Wallpaper ....**",
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("░░░░░░░░░░░░░", callback_data="progress_msg")]]), reply_to_message_id = message.message_id)
@@ -569,7 +570,7 @@ async def logo(bot, message):
             [[InlineKeyboardButton("█████████████", callback_data="progress_msg")]]))  
     img = await get_unsplash(text)
     photo = random.choice(img)
-    await message.reply_chat_action("upload_photo")
+    await message.reply_chat_action(enums.ChatAction.UPLOAD_PHOTO)
     await app.send_photo(message.chat.id, photo=photo, caption=caption3.format(message.from_user.mention), reply_to_message_id = message.message_id,
                  reply_markup=InlineKeyboardMarkup(
             [
