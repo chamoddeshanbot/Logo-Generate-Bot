@@ -131,7 +131,7 @@ app = Client(
 )
 
 
-IB = """**🎨 Successfully Generated logo ✅**\n\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**\n\n🍀 User Id : {query.from_user.id}"""
+IB = """**🎨 Successfully Generated logo ✅** \n\n **🏖 This Logo was sent to the Requester by Bot Inbox 🛠** \n\n 🍀 User Id : {query.from_user.id}"""
  
  
 FSUBB = InlineKeyboardMarkup(
@@ -328,7 +328,7 @@ async def on_off_antiarab(_, message: Message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🏖 Send Inbox 🏖", callback_data="ib"
+                        "🏖 Send Inbox 🏖", callback_data="ib, {message.from_user.id}"
                     )
                 ]
             ]
@@ -370,7 +370,7 @@ async def on_off_antiarab(_, message: Message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🏖 Send Inbox 🏖", callback_data="ib"
+                        "🏖 Send Inbox 🏖", callback_data="ib, {message.from_user.id}"
                     )
                 ]
             ]
@@ -416,7 +416,7 @@ async def on_off_antiarab(_, message: Message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🏖 Send Inbox 🏖", callback_data="ib"
+                        "🏖 Send Inbox 🏖", callback_data="ib, {message.from_user.id}"
                     )
                 ]
             ]
@@ -457,7 +457,7 @@ async def on_off_antiarab(_, message: Message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🏖 Send Inbox 🏖", callback_data="ib"
+                        "🏖 Send Inbox 🏖", callback_data="ib, {message.from_user.id}"
                     )
                 ]
             ]
@@ -497,7 +497,7 @@ async def logo(bot, message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🏖 Send Inbox 🏖", callback_data="ib"
+                        "🏖 Send Inbox 🏖", callback_data="ib, {message.from_user.id}"
                     )
                 ]
             ]
@@ -540,7 +540,7 @@ async def logohq(bot, message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🏖 Send Inbox 🏖", callback_data="ib"
+                        "🏖 Send Inbox 🏖", callback_data="ib, {message.from_user.id}"
                     )
                 ]
             ]
@@ -582,7 +582,7 @@ async def logo(bot, message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🏖 Send Inbox 🏖", callback_data="ib"
+                        "🏖 Send Inbox 🏖", callback_data="ib, {message.from_user.id}"
                     )
                 ]
             ]
@@ -624,7 +624,7 @@ async def logo(bot, message):
                 ],
                 [
                     InlineKeyboardButton(
-                        "🏖 Send Inbox 🏖", callback_data="ib"
+                        "🏖 Send Inbox 🏖", callback_data="ib, {message.from_user.id}"
                     )
                 ]
             ]
@@ -660,7 +660,7 @@ async def ib(_,query):
     await query.message.delete()
     await query.message.reply(IB,
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("✖️ close ✖️", callback_data="close")]]))
+            [[InlineKeyboardButton("✖️ close ✖️", callback_data="close, {message.from_user.id}")]]))
     
 
     
