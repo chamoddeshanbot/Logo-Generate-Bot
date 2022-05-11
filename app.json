@@ -5,15 +5,15 @@
     "env": {
         "API_ID": {
             "description": "Get this value from my.telegram.org.",
-            "required": Flase
+            "required": false
         },
         "API_HASH": {
             "description": "Get this value from my.telegram.org.",
-            "required": Flase
+            "required": false
         },
         "BOT_TOKEN": {
             "description": "Get this value by making a bot from @BotFather.",
-            "required": Flase
+            "required": false
         }
     },
     "buildpacks": [
