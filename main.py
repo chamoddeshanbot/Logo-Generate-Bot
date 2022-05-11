@@ -187,6 +187,10 @@ async def start(client: Client, message: Message):
 async def help(bot, message):
   await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
 
+@app.on_message(filters.command("inbox"))
+async def inbox(bot, message):
+  await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=ibn,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
+
 
 @app.on_message(filters.command("about"))
 async def about_(client: Client, message: Message):
@@ -605,7 +609,7 @@ async def ib(_,query):
     message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
     await query.message.copy(chat_id=query.from_user.id)
-    await query.message.edit(HELP,
+    await query.message.edit(ibn,
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("✖️ close ✖️", callback_data="close")]]))
 
@@ -614,6 +618,7 @@ async def ib(_,query):
 async def close(_,query):
     message = query.message
     await query.answer(f"✖️ Close Menu ✖️")
+    await query.message.reply_chat_action("cancel")
     await query.message.delete()
     
 @app.on_callback_query(filters.regex("inb"))
