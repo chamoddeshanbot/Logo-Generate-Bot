@@ -131,7 +131,7 @@ app = Client(
 )
 
 
-IB = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
+IB = """**🎨 Successfully Generated logo ✅**\n\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**\n\n🍀 User Id : {query.from_user.id}"""
  
  
 FSUBB = InlineKeyboardMarkup(
@@ -658,7 +658,7 @@ async def ib(_,query):
     await query.answer(f"🏖 Send Inbox 🏖")
     await query.message.copy(chat_id=query.from_user.id)
     await query.message.delete()
-    await query.message.reply(caption=f"**🎨 Successfully Generated logo ✅**\n\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**\n\n🍀 User Id : {query.from_user.id}",
+    await query.message.reply(IB,
         reply_markup=InlineKeyboardMarkup(
             [[InlineKeyboardButton("✖️ close ✖️", callback_data="close")]]))
     
