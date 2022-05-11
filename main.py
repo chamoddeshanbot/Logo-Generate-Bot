@@ -85,14 +85,43 @@ HELP = """
 
 **♻️ Example:** 
 
-/logo NetworkTech
-/logohq NetworkTech
-/slogo NetworkTech
-/slogohq NetworkTech
-/write NetworkTech
-/wall Trees
+/logo NetwokTech
+/logohq NetwokTech
+/wall fish
+/write NetwokTech
+/slogo NetwokTech
+/slogohq NetwokTech
+/swall fish
+/unsplash fish
 """
+START = """
 
+**🖼 How To Use Me ?**
+
+Hello there, 💞💞
+
+bot gen oyalata logo create karagannam
+oyala bot wa oyalage onama group ekakata
+add karala ehemath naththam bot inna group
+ekata join wela @Network_techchat /logo command
+eka bavitha karala logo create karaganna 
+puluwan...ita passe bot logo eka create
+karala euwama oyalata (send inbox) kiyana
+inline button eka press karala oyalata
+logo eka inbox ganna puluwan...
+
+⭕️ Bot Command ⬇️
+
+/logo NetwokTech
+/logohq NetwokTech
+/wall fish
+/write NetwokTech
+/slogo NetwokTech
+/slogohq NetwokTech
+/swall fish
+/unsplash fish
+
+"""
 
 app = Client(
     'logo Bot',
@@ -108,7 +137,13 @@ FSUBB = InlineKeyboardMarkup(
         ]]      
     )
 
-@app.on_message(filters.command("start"))
+@app.on_message(filters.command("start") & filters.private)
+async def start(bot, message):
+  await message.reply_photo("https://telegra.ph/file/8f9bfbaae3a8f021acbc0.jpg",caption=START,
+      reply_markup=InlineKeyboardMarkup(
+          [[InlineKeyboardButton("Netwok Tech Chat 🇱🇰", url=f"https://t.me/Network_techchat")]]), reply_to_message_id = message.message_id)
+
+@app.on_message(filters.command("start") & filters.group=True)
 async def start(client: Client, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -135,12 +170,14 @@ async def start(client: Client, message: Message):
 
 🔥 Bot Commands 🔥
 
-/logo NetworkTech
-/logohq NetworkTech
-/slogo NetworkTech
-/slogohq NetworkTech
-/write NetworkTech
-/wall Trees
+/logo NetwokTech
+/logohq NetwokTech
+/wall fish
+/write NetwokTech
+/slogo NetwokTech
+/slogohq NetwokTech
+/swall fish
+/unsplash fish
 
 🌿 Developer : || @chamod_deshan ||
 
@@ -183,16 +220,16 @@ async def start(client: Client, message: Message):
     )
 
 
-@app.on_message(filters.command("help"))
+@app.on_message(filters.command("help") & filters.group=True)
 async def help(bot, message):
   await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
 
-@app.on_message(filters.command("inbox"))
-async def inbox(bot, message):
+@app.on_message(filters.command("ib"))
+async def ib(bot, message):
   await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=ibn,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
 
 
-@app.on_message(filters.command("about"))
+@app.on_message(filters.command("about") & filters.group=True)
 async def about_(client: Client, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -249,7 +286,7 @@ async def about_(client: Client, message: Message):
 ibn = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
      
 
-@app.on_message(filters.command("slogo"))
+@app.on_message(filters.command("slogo") & filters.group=True)
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action("typing")
@@ -289,8 +326,9 @@ async def on_off_antiarab(_, message: Message):
     )
     await status.delete()
 
+    
 #hq logo creator
-@app.on_message(filters.command("slogohq"))
+@app.on_message(filters.command("slogohq") & filters.group=True)
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action("typing")
@@ -331,7 +369,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 #handwrite
-@app.on_message(filters.command("write"))
+@app.on_message(filters.command("write") & filters.group=True)
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action("typing")
@@ -377,7 +415,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 #wallpaper
-@app.on_message(filters.command("swall"))
+@app.on_message(filters.command("swall") & filters.group=True)
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action("typing")
@@ -417,7 +455,7 @@ async def on_off_antiarab(_, message: Message):
     )
     await status.delete()
 
-@app.on_message(filters.command("logo"))
+@app.on_message(filters.command("logo") & filters.group=True)
 async def logo(bot, message):
     try:
         await message.reply_chat_action("typing")
@@ -460,7 +498,7 @@ async def logo(bot, message):
 
     
 
-@app.on_message(filters.command("logohq"))
+@app.on_message(filters.command("logohq") & filters.group=True)
 async def logohq(bot, message):
     try:
         await message.reply_chat_action("typing")
@@ -501,7 +539,7 @@ async def logohq(bot, message):
     await status.delete()
     
 
-@app.on_message(filters.command("wall"))
+@app.on_message(filters.command("wall") & filters.group=True)
 async def logo(bot, message):
     try:
         await message.reply_chat_action("typing")
@@ -543,7 +581,7 @@ async def logo(bot, message):
     await status.delete()
     
  
-@app.on_message(filters.command("unsplash"))
+@app.on_message(filters.command("unsplash") & filters.group=True)
 async def logo(bot, message):
     try:
         await message.reply_chat_action("typing")
