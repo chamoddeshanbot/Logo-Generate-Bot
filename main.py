@@ -1,5 +1,4 @@
 from pyrogram import Client, filters
-from pyrogram import enums
 import random
 from typing import Union
 from config import Config
