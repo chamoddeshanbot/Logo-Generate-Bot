@@ -6,7 +6,7 @@ from logo import generate_logo
 from logo import get_wallpapers, get_unsplash
 from pyrogram.types import *
 import result
-from pyrogram.types import User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, Chat
+from pyrogram.types import InputMediaPhoto, User, Message, InlineQueryResultPhoto, InlineQueryResult, InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, Chat
 from pyrogram.errors import UserNotParticipant, ChatAdminRequired, UsernameNotOccupied, FloodWait
 from pyrogram.types import (
     InlineKeyboardButton,
@@ -612,11 +612,19 @@ async def help(_,query):
 async def ib(_,query):
     message = query.message
     await query.answer(f"🏖 Send Inbox 🏖")
-    await query.message.edit_message_reply_markup(reply_markup=button)
+    await query.message.edit_message_reply_markup(
+        InlineKeyboardMarkup([[
+            InlineKeyboardButton("✖️ Close ✖️", callback_data="close")]]))
     await query.message.copy(chat_id=query.from_user.id)
-    await query.message.delete()
-    await query.message.reply(ibn)
+    await query.message.edit_message_media(ibn,
+        InputMediaPhoto("https://telegra.ph/file/12155d9fd310edf3fab33.jpg"))
 
+    
+@app.on_callback_query(filters.regex("close"))
+async def close(_,query):
+    message = query.message
+    await query.answer(f"✖️ Close Menu ✖️")
+    await query.message.delete()
     
 @app.on_callback_query(filters.regex("inb"))
 async def ibb(_,query):
