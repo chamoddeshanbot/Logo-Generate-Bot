@@ -145,7 +145,7 @@ async def start(bot, message):
       reply_markup=InlineKeyboardMarkup(
           [[InlineKeyboardButton("Netwok Tech Chat 🇱🇰", url=f"https://t.me/Network_techchat")]]), reply_to_message_id = message.message_id)
 
-@app.on_message(filters.command("start") & filters.group=True)
+@app.on_message(filters.command("start") & filters.group)
 async def start(client: Client, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -222,7 +222,7 @@ async def start(client: Client, message: Message):
     )
 
 
-@app.on_message(filters.command("help") & filters.group=True)
+@app.on_message(filters.command("help") & filters.group)
 async def help(bot, message):
   await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=HELP,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
 
@@ -231,7 +231,7 @@ async def ib(bot, message):
   await message.reply_photo("https://telegra.ph/file/bd9a2bb25666a94f30211.jpg",caption=IB,reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="<<< Back", callback_data="start_menu")]]), reply_to_message_id = message.message_id)   
 
 
-@app.on_message(filters.command("about") & filters.group=True)
+@app.on_message(filters.command("about") & filters.group)
 async def about_(client: Client, message: Message):
     try:
         await message.reply_chat_action(enums.ChatAction.TYPING)
@@ -288,7 +288,7 @@ async def about_(client: Client, message: Message):
 IB = """**🎨 Successfully Generated logo ✅**\n**🏖 This Logo was sent to the Requester by Bot Inbox 🛠**"""
      
 
-@app.on_message(filters.command("slogo") & filters.group=True)
+@app.on_message(filters.command("slogo") & filters.group)
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action("typing")
@@ -330,7 +330,7 @@ async def on_off_antiarab(_, message: Message):
 
     
 #hq logo creator
-@app.on_message(filters.command("slogohq") & filters.group=True)
+@app.on_message(filters.command("slogohq") & filters.group)
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action("typing")
@@ -371,7 +371,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 #handwrite
-@app.on_message(filters.command("write") & filters.group=True)
+@app.on_message(filters.command("write") & filters.group)
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action("typing")
@@ -417,7 +417,7 @@ async def on_off_antiarab(_, message: Message):
     await status.delete()
 
 #wallpaper
-@app.on_message(filters.command("swall") & filters.group=True)
+@app.on_message(filters.command("swall") & filters.group)
 async def on_off_antiarab(_, message: Message):
     try:
         await message.reply_chat_action("typing")
@@ -457,7 +457,7 @@ async def on_off_antiarab(_, message: Message):
     )
     await status.delete()
 
-@app.on_message(filters.command("logo") & filters.group=True)
+@app.on_message(filters.command("logo") & filters.group)
 async def logo(bot, message):
     try:
         await message.reply_chat_action("typing")
@@ -500,7 +500,7 @@ async def logo(bot, message):
 
     
 
-@app.on_message(filters.command("logohq") & filters.group=True)
+@app.on_message(filters.command("logohq") & filters.group)
 async def logohq(bot, message):
     try:
         await message.reply_chat_action("typing")
@@ -541,7 +541,7 @@ async def logohq(bot, message):
     await status.delete()
     
 
-@app.on_message(filters.command("wall") & filters.group=True)
+@app.on_message(filters.command("wall") & filters.group)
 async def logo(bot, message):
     try:
         await message.reply_chat_action("typing")
@@ -583,7 +583,7 @@ async def logo(bot, message):
     await status.delete()
     
  
-@app.on_message(filters.command("unsplash") & filters.group=True)
+@app.on_message(filters.command("unsplash") & filters.group)
 async def logo(bot, message):
     try:
         await message.reply_chat_action("typing")
