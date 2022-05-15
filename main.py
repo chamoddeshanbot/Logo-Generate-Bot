@@ -645,7 +645,12 @@ button = InlineKeyboardMarkup(
     ]
     
     )
-
+callback_data = query.data.strip()
+callback_request = callback_data.split(None, 1)[1]
+user_id = callback_request.split("|")
+if query.from_user.id != int(user_id):
+return await CallbackQuery.answer("You're not allowed to use this.")
+await CallbackQuery.answer()
 
 @app.on_callback_query(filters.regex("help"))
 async def help(_,query):
@@ -654,13 +659,19 @@ async def help(_,query):
 
 @app.on_callback_query(filters.regex("ib"))
 async def ib(_,query):
-    message = query.message
+  try:
+      message = query.message
+      callback_data = query.data.strip()
+      callback_request = callback_data.split(None, 1)[1]
+      user_id = callback_request.split("|")
+    if query.from_user.id != int(user_id):
+    return await CallbackQuery.answer("You're not allowed to use this.")
     await query.answer(f"🏖 Send Inbox 🏖")
     await query.message.copy(chat_id=query.from_user.id)
     await query.message.delete()
     await query.message.reply(IB,
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("✖️ close ✖️", callback_data="close, {message.from_user.id}")]]))
+            [[InlineKeyboardButton("✖️ close ✖️", callback_data="close}")]]))
     
 
     
